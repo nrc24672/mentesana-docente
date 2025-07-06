@@ -982,25 +982,245 @@
 
         // Función para descargar recursos
         function downloadResource(filename) {
-            // Mapeo de archivos a sus páginas correspondientes
-            const resourceMap = {
-                'guia-senales-alerta.pdf': 'guia-senales-alerta.html',
-                'protocolo-primeros-auxilios.pdf': 'protocolo-primeros-auxilios.html',
-                'dinamicas-aula.pdf': 'dinamicas-aula.html',
-                'directorio-servicios.pdf': '#',
-                'guia-comunicacion.pdf': '#',
-                'autocuidado-docente.pdf': '#'
+            // En lugar de navegar a archivos separados, mostrar el contenido en modal
+            const resourceContent = getResourceContent(filename);
+            
+            if (resourceContent) {
+                showResourceModal(resourceContent);
+            } else {
+                showResourceNotAvailable();
+            }
+        }
+
+        function getResourceContent(filename) {
+            const resources = {
+                'guia-senales-alerta.pdf': {
+                    title: 'Guía de Señales de Alerta',
+                    content: `
+                        <div style="max-height: 600px; overflow-y: auto; padding: 20px; text-align: left;">
+                            <h2 style="color: #667eea; margin-bottom: 20px;">GUÍA DE SEÑALES DE ALERTA</h2>
+                            <p style="font-style: italic; color: #666; margin-bottom: 30px;">Detección Temprana de Problemas de Salud Mental en Estudiantes</p>
+                            
+                            <div style="background: #fed7d7; border: 2px solid #e53e3e; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                                <h3 style="color: #e53e3e; margin: 0;">🚨 SEÑALES CRÍTICAS (Acción Inmediata)</h3>
+                                <ul style="margin: 10px 0;">
+                                    <li>Expresiones de deseos de muerte o autolesión</li>
+                                    <li>Intentos de autolesión o comportamientos autodestructivos</li>
+                                    <li>Amenazas de lastimar a otros</li>
+                                    <li>Comportamiento violento o agresivo extremo</li>
+                                    <li>Signos evidentes de abuso físico o sexual</li>
+                                    <li>Aislamiento total y rechazo completo a la interacción</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #fefcbf; border: 2px solid #d69e2e; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                                <h3 style="color: #d69e2e; margin: 0;">⚠️ SEÑALES IMPORTANTES (Atención Prioritaria)</h3>
+                                <ul style="margin: 10px 0;">
+                                    <li>Cambios drásticos en el rendimiento académico</li>
+                                    <li>Ausencias frecuentes sin justificación médica</li>
+                                    <li>Cambios extremos en el apetito o peso</li>
+                                    <li>Trastornos del sueño evidentes</li>
+                                    <li>Cambios bruscos en la personalidad</li>
+                                    <li>Pérdida de interés en actividades que antes disfrutaba</li>
+                                    <li>Irritabilidad o cambios de humor extremos</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #c6f6d5; border: 2px solid #38a169; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                                <h3 style="color: #38a169; margin: 0;">ℹ️ SEÑALES TEMPRANAS (Observación Continua)</h3>
+                                <ul style="margin: 10px 0;">
+                                    <li>Disminución gradual en las calificaciones</li>
+                                    <li>Cambios menores en patrones de socialización</li>
+                                    <li>Preocupación excesiva por temas específicos</li>
+                                    <li>Fatiga o baja energía ocasional</li>
+                                    <li>Timidez o retraimiento social gradual</li>
+                                </ul>
+                            </div>
+
+                            <h3 style="color: #2d3748; margin-top: 30px;">📞 Contactos de Emergencia</h3>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                                <p><strong>Línea 113:</strong> Emergencias de Salud Mental (24 horas)</p>
+                                <p><strong>Chat Esperanza:</strong> 625-3838 (WhatsApp)</p>
+                                <p><strong>Policía Nacional:</strong> 105</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'protocolo-primeros-auxilios.pdf': {
+                    title: 'Protocolo de Primeros Auxilios Emocionales',
+                    content: `
+                        <div style="max-height: 600px; overflow-y: auto; padding: 20px; text-align: left;">
+                            <h2 style="color: #e53e3e; margin-bottom: 20px;">PROTOCOLO DE PRIMEROS AUXILIOS EMOCIONALES</h2>
+                            <p style="font-style: italic; color: #666; margin-bottom: 30px;">Guía de Intervención Inmediata para Docentes</p>
+                            
+                            <div style="background: #fed7d7; border: 2px solid #e53e3e; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                                <h3 style="color: #e53e3e; margin: 0;">🚨 Cuándo aplicar este protocolo</h3>
+                                <p>Crisis emocional aguda, pensamientos autolesivos, ataques de pánico, episodios de violencia</p>
+                            </div>
+
+                            <h3 style="color: #2d3748;">📋 5 Pasos Fundamentales:</h3>
+                            
+                            <div style="background: #f8f9fa; border-left: 4px solid #4299e1; padding: 15px; margin: 10px 0;">
+                                <h4 style="color: #4299e1;">1. MANTENER LA CALMA</h4>
+                                <p>Tu tranquilidad es contagiosa. Respira profundo, habla con voz calmada.</p>
+                                <div style="background: #c6f6d5; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                                    <strong>✅ Qué decir:</strong>
+                                    <p>"Estoy aquí contigo y vamos a resolver esto juntos"</p>
+                                    <p>"Estás seguro/a, no estás solo/a"</p>
+                                </div>
+                            </div>
+
+                            <div style="background: #f8f9fa; border-left: 4px solid #4299e1; padding: 15px; margin: 10px 0;">
+                                <h4 style="color: #4299e1;">2. GARANTIZAR LA SEGURIDAD</h4>
+                                <p>Evalúa rápidamente si hay riesgo físico inmediato.</p>
+                                <ul>
+                                    <li>Alejar de situaciones que empeoren la crisis</li>
+                                    <li>Retirar objetos peligrosos del alcance</li>
+                                    <li>Mantener distancia física apropiada</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #f8f9fa; border-left: 4px solid #4299e1; padding: 15px; margin: 10px 0;">
+                                <h4 style="color: #4299e1;">3. ESCUCHAR ACTIVAMENTE</h4>
+                                <p>Permite que exprese sus emociones sin interrumpir.</p>
+                                <div style="background: #fed7d7; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                                    <strong>❌ Evita decir:</strong>
+                                    <p>"No es para tanto" / "Cálmate" / "Otros tienen problemas peores"</p>
+                                </div>
+                            </div>
+
+                            <div style="background: #f8f9fa; border-left: 4px solid #4299e1; padding: 15px; margin: 10px 0;">
+                                <h4 style="color: #4299e1;">4. EVALUAR LA SITUACIÓN</h4>
+                                <ul>
+                                    <li>¿Hay riesgo inmediato de autolesión?</li>
+                                    <li>¿Presenta síntomas de abuso?</li>
+                                    <li>¿Puede comunicarse coherentemente?</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #f8f9fa; border-left: 4px solid #4299e1; padding: 15px; margin: 10px 0;">
+                                <h4 style="color: #4299e1;">5. CONECTAR CON RECURSOS</h4>
+                                <ul>
+                                    <li>Contactar a la familia</li>
+                                    <li>Derivar al centro de salud</li>
+                                    <li>Informar a la dirección</li>
+                                    <li>Documentar la situación</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
+                },
+                'dinamicas-aula.pdf': {
+                    title: 'Dinámicas para el Aula',
+                    content: `
+                        <div style="max-height: 600px; overflow-y: auto; padding: 20px; text-align: left;">
+                            <h2 style="color: #48bb78; margin-bottom: 20px;">DINÁMICAS PARA EL AULA</h2>
+                            <p style="font-style: italic; color: #666; margin-bottom: 30px;">Actividades Prácticas para Promover el Bienestar Emocional</p>
+                            
+                            <div style="background: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                                <h3 style="color: #48bb78;">😊 El Termómetro Emocional</h3>
+                                <p><strong>Tiempo:</strong> 5-10 minutos | <strong>Frecuencia:</strong> Diario</p>
+                                <p><strong>Objetivo:</strong> Ayudar a identificar y expresar emociones al comenzar la clase.</p>
+                                
+                                <h4>📋 Pasos:</h4>
+                                <ol>
+                                    <li>Dibuja un termómetro en la pizarra con números del 1 al 10</li>
+                                    <li>Explica: 1-3 (triste), 4-6 (neutro), 7-10 (feliz)</li>
+                                    <li>Cada estudiante dice su nombre y número emocional</li>
+                                    <li>Opcionalmente comparten por qué se sienten así</li>
+                                </ol>
+                                
+                                <div style="background: #e6fffa; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                                    <strong>💡 Consejo:</strong> Comparte tú primero para modelar la actividad
+                                </div>
+                            </div>
+
+                            <div style="background: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                                <h3 style="color: #48bb78;">🌬️ Respiración del Globo</h3>
+                                <p><strong>Tiempo:</strong> 3-5 minutos | <strong>Uso:</strong> Cuando sea necesario</p>
+                                <p><strong>Objetivo:</strong> Técnicas de respiración para manejar ansiedad y estrés.</p>
+                                
+                                <h4>📋 Pasos:</h4>
+                                <ol>
+                                    <li>Imaginen que tienen un globo en su barriga</li>
+                                    <li>Inhalen lentamente por la nariz (4 seg) - el globo se infla</li>
+                                    <li>Mantengan el aire (2 seg) - el globo está lleno</li>
+                                    <li>Exhalen por la boca (6 seg) - el globo se desinfla</li>
+                                    <li>Repitan 5-10 veces</li>
+                                </ol>
+                                
+                                <div style="background: #e6fffa; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                                    <strong>💡 Consejo:</strong> Úsala antes de exámenes o cuando notes estudiantes ansiosos
+                                </div>
+                            </div>
+
+                            <div style="background: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                                <h3 style="color: #48bb78;">🛡️ El Escudo Personal</h3>
+                                <p><strong>Tiempo:</strong> 30-45 minutos | <strong>Frecuencia:</strong> Una vez por mes</p>
+                                <p><strong>Objetivo:</strong> Fortalecer la autoestima identificando fortalezas personales.</p>
+                                
+                                <h4>📋 Pasos:</h4>
+                                <ol>
+                                    <li>Cada estudiante dibuja un escudo dividido en 4 secciones</li>
+                                    <li>Sección 1: "Mis fortalezas"</li>
+                                    <li>Sección 2: "Mis logros"</li>
+                                    <li>Sección 3: "Mi red de apoyo"</li>
+                                    <li>Sección 4: "Mis sueños"</li>
+                                    <li>Compartir voluntariamente en grupos pequeños</li>
+                                </ol>
+                            </div>
+
+                            <div style="background: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                                <h3 style="color: #48bb78;">🚦 El Semáforo Emocional</h3>
+                                <p><strong>Tiempo:</strong> 20-30 minutos | <strong>Uso:</strong> Cuando hay conflictos</p>
+                                <p><strong>Objetivo:</strong> Enseñar autorregulación emocional.</p>
+                                
+                                <h4>📋 Pasos:</h4>
+                                <ul>
+                                    <li><strong>🔴 ROJO:</strong> Parar - respira profundo cuando sientes emociones intensas</li>
+                                    <li><strong>🟡 AMARILLO:</strong> Pensar - considera las opciones y consecuencias</li>
+                                    <li><strong>🟢 VERDE:</strong> Actuar - elige la mejor opción de manera constructiva</li>
+                                </ul>
+                            </div>
+
+                            <h3 style="color: #2d3748; margin-top: 30px;">🌾 Adaptaciones para Contexto Rural</h3>
+                            <ul>
+                                <li>Incorpora elementos locales (plantas, animales de la zona)</li>
+                                <li>Considera el tiempo agrícola</li>
+                                <li>Valora la oralidad</li>
+                                <li>Incluye a la familia</li>
+                                <li>Usa materiales locales (semillas, hojas, piedras)</li>
+                            </ul>
+                        </div>
+                    `
+                }
             };
             
-            const targetPage = resourceMap[filename];
+            return resources[filename] || null;
+        }
+
+        function showResourceModal(resource) {
+            const modal = document.getElementById('downloadModal');
+            const modalContent = modal.querySelector('.modal-content');
             
-            if (targetPage && targetPage !== '#') {
-                // Abrir en nueva pestaña
-                window.open(targetPage, '_blank');
-            } else {
-                // Mostrar modal para recursos no disponibles aún
-                document.getElementById('downloadModal').style.display = 'block';
-            }
+            modalContent.innerHTML = `
+                <span class="close">&times;</span>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0;">${resource.title}</h2>
+                    <button onclick="printResource()" style="background: #48bb78; color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
+                        <i class="fas fa-download"></i> Descargar PDF
+                    </button>
+                </div>
+                ${resource.content}
+            `;
+            
+            // Re-agregar event listener para el botón cerrar
+            modal.querySelector('.close').addEventListener('click', closeModal);
+            modal.style.display = 'block';
+        }
+
+        function printResource() {
+            window.print();
         }
 
         // Función para cerrar modales
