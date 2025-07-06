@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Señales de Alerta en Salud Mental - MenteSana Docente</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #f7fafc;
+        }
+
+        .document-container {
+            max-width: 210mm;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .document-content {
+            padding: 30mm 20mm;
+            min-height: 297mm;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .header .subtitle {
+            color: #4a5568;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .program-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #2d3748;
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .section h3 {
+            color: #4a5568;
+            font-size: 16px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .alert-category {
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .alert-category h3 {
+            color: #e53e3e;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .alert-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            border-bottom: 1px dotted #cbd5e0;
+        }
+
+        .alert-list li:before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+
+        .severity-high {
+            background: #fed7d7;
+            border-left: 4px solid #e53e3e;
+        }
+
+        .severity-medium {
+            background: #fefcbf;
+            border-left: 4px solid #d69e2e;
+        }
+
+        .severity-low {
+            background: #c6f6d5;
+            border-left: 4px solid #38a169;
+        }
+
+        .info-box {
+            background: #ebf8ff;
+            border: 1px solid #90cdf4;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checklist {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .checklist h4 {
+            color: #2f855a;
+            margin-bottom: 15px;
+        }
+
+        .checklist ul {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 16px;
+            color: #2f855a;
+        }
+
+        .action-steps {
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .action-steps h4 {
+            color: #c05621;
+            margin-bottom: 15px;
+        }
+
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #ed8936;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: #4a5568;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #2d3748;
+            color: white;
+        }
+
+        @media print {
+            .download-btn,
+            .back-btn {
+                display: none;
+            }
+            
+            .document-container {
+                box-shadow: none;
+                margin: 0;
+            }
+            
+            .document-content {
+                padding: 20mm;
+            }
+            
+            body {
+                background: white;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .document-container {
+                margin: 10px;
+            }
+            
+            .document-content {
+                padding: 20px 15px;
+            }
+            
+            .download-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .back-btn {
+                top: 20px;
+                left: 20px;
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+
+        .age-ranges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .age-range {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .age-range h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>
+
+    <button onclick="downloadPDF()" class="download-btn">
+        <i class="fas fa-download"></i> Descargar PDF
+    </button>
+
+    <div class="document-container">
+        <div class="document-content">
+            <div class="header">
+                <h1>GUÍA DE SEÑALES DE ALERTA</h1>
+                <p class="subtitle">Detección Temprana de Problemas de Salud Mental en Estudiantes</p>
+            </div>
+
+            <div class="program-info">
+                <strong>MenteSana Docente</strong> - Programa de Capacitación en Salud Mental Educativa
+                <br>Dirigido a docentes de zonas rurales del Perú
+            </div>
+
+            <div class="section">
+                <h2>Introducción</h2>
+                <p>Como docente, tienes una posición privilegiada para observar cambios en el comportamiento, estado de ánimo y rendimiento de tus estudiantes. Esta guía te ayudará a identificar señales de alerta que podrían indicar problemas de salud mental y la necesidad de intervención o apoyo adicional.</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> Recuerda</h4>
+                    <p>La presencia de una o varias señales no significa automáticamente que el estudiante tenga un problema de salud mental, pero sí indica la necesidad de mayor atención y posible evaluación profesional.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Categorías de Señales de Alerta</h2>
+
+                <div class="alert-category severity-high">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Señales de Alerta CRÍTICAS (Acción Inmediata)</h3>
+                    <ul class="alert-list">
+                        <li>Expresiones de deseos de muerte o autolesión</li>
+                        <li>Intentos de autolesión o comportamientos autodestructivos</li>
+                        <li>Amenazas de lastimar a otros</li>
+                        <li>Comportamiento violento o agresivo extremo</li>
+                        <li>Uso de sustancias (alcohol, drogas) en el centro educativo</li>
+                        <li>Signos evidentes de abuso físico o sexual</li>
+                        <li>Aislamiento total y rechazo completo a la interacción</li>
+                        <li>Desorientación severa o pérdida de contacto con la realidad</li>
+                    </ul>
+                </div>
+
+                <div class="alert-category severity-medium">
+                    <h3><i class="fas fa-exclamation"></i> Señales de Alerta IMPORTANTES (Atención Prioritaria)</h3>
+                    <ul class="alert-list">
+                        <li>Cambios drásticos en el rendimiento académico</li>
+                        <li>Ausencias frecuentes sin justificación médica</li>
+                        <li>Cambios extremos en el apetito o peso</li>
+                        <li>Trastornos del sueño evidentes (dormir en clase constantemente)</li>
+                        <li>Cambios bruscos en la personalidad o comportamiento</li>
+                        <li>Pérdida de interés en actividades que antes disfrutaba</li>
+                        <li>Dificultades de concentración persistentes</li>
+                        <li>Irritabilidad o cambios de humor extremos</li>
+                        <li>Problemas de higiene personal notable</li>
+                        <li>Quejas frecuentes de dolores físicos sin causa médica</li>
+                    </ul>
+                </div>
+
+                <div class="alert-category severity-low">
+                    <h3><i class="fas fa-info-circle"></i> Señales de Alerta TEMPRANAS (Observación Continua)</h3>
+                    <ul class="alert-list">
+                        <li>Disminución gradual en las calificaciones</li>
+                        <li>Cambios menores en patrones de socialización</li>
+                        <li>Preocupación excesiva por temas específicos</li>
+                        <li>Fatiga o baja energía ocasional</li>
+                        <li>Dificultades menores para completar tareas</li>
+                        <li>Timidez o retraimiento social gradual</li>
+                        <li>Cambios en el patrón de participación en clase</li>
+                        <li>Expresión de sentimientos de tristeza ocasional</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Señales Específicas por Rango de Edad</h2>
+                
+                <div class="age-ranges">
+                    <div class="age-range">
+                        <h4>11-13 años</h4>
+                        <ul style="text-align: left; font-size: 14px;">
+                            <li>Regresión a comportamientos infantiles</li>
+                            <li>Miedo excesivo a la separación</li>
+                            <li>Quejas somáticas frecuentes</li>
+                            <li>Dificultades con cambios de rutina</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="age-range">
+                        <h4>14-16 años</h4>
+                        <ul style="text-align: left; font-size: 14px;">
+                            <li>Experimentación con identidad extrema</li>
+                            <li>Conflictos intensos con autoridad</li>
+                            <li>Comportamientos de riesgo</li>
+                            <li>Preocupación excesiva por imagen corporal</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="age-range">
+                        <h4>17-18 años</h4>
+                        <ul style="text-align: left; font-size: 14px;">
+                            <li>Ansiedad excesiva sobre el futuro</li>
+                            <li>Aislamiento de planes familiares</li>
+                            <li>Decisiones impulsivas importantes</li>
+                            <li>Síntomas depresivos persistentes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Protocolo de Observación y Registro</h2>
+                
+                <div class="checklist">
+                    <h4>Lista de Verificación para Observación Diaria</h4>
+                    <ul>
+                        <li>Observar patrones de comportamiento durante al menos 2 semanas</li>
+                        <li>Documentar cambios específicos con fechas y contextos</li>
+                        <li>Notar la frecuencia e intensidad de las señales</li>
+                        <li>Considerar factores externos (problemas familiares, cambios sociales)</li>
+                        <li>Consultar con otros docentes que trabajen con el estudiante</li>
+                        <li>Mantener confidencialidad apropiada</li>
+                        <li>Documentar intervenciones realizadas y sus resultados</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Cuándo y Cómo Actuar</h2>
+                
+                <div class="action-steps">
+                    <h4>Pasos de Acción Según Severidad</h4>
+                    
+                    <div class="step">
+                        <strong>Señales Críticas:</strong> Acción inmediata - No dejar solo al estudiante, contactar a la familia y servicios de emergencia si es necesario, documentar todo.
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Señales Importantes:</strong> Contactar a la familia en 24-48 horas, derivar al centro de salud, implementar plan de apoyo en el aula.
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Señales Tempranas:</strong> Aumentar la observación, crear oportunidades de diálogo, implementar estrategias de apoyo preventivo.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Factores de Riesgo en Contextos Rurales</h2>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Aislamiento geográfico:</strong> Limitado acceso a servicios especializados</li>
+                    <li><strong>Migración familiar:</strong> Separación de padres por trabajo estacional</li>
+                    <li><strong>Presión económica:</strong> Necesidad de trabajar para apoyar a la familia</li>
+                    <li><strong>Estigma cultural:</strong> Tabúes sobre salud mental en la comunidad</li>
+                    <li><strong>Acceso limitado a tecnología:</strong> Menor conexión con redes de apoyo</li>
+                    <li><strong>Cambios estacionales:</strong> Impacto de factores climáticos en el estado de ánimo</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Recursos y Contactos de Emergencia</h2>
+                <div class="info-box">
+                    <h4><i class="fas fa-phone"></i> Líneas de Ayuda</h4>
+                    <p><strong>Línea 113:</strong> Emergencias de Salud Mental (24 horas)<br>
+                    <strong>Chat Esperanza:</strong> 625-3838 (WhatsApp)<br>
+                    <strong>Centro de Salud Ccorca:</strong> [Número local]<br>
+                    <strong>Policía Nacional:</strong> 105<br>
+                    <strong>DEMUNA:</strong> [Número local]</p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p><strong>MenteSana Docente</strong> - Programa de Capacitación en Salud Mental Educativa</p>
+                <p>Para más información: mentesana.docente@gmail.com | WhatsApp: +51 984 123 456</p>
+                <p>© 2024 - Recurso educativo gratuito para docentes</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Ocultar botones antes de imprimir
+            const downloadBtn = document.querySelector('.download-btn');
+            const backBtn = document.querySelector('.back-btn');
+            
+            downloadBtn.style.display = 'none';
+            backBtn.style.display = 'none';
+            
+            // Configurar para impresión
+            window.print();
+            
+            // Restaurar botones después de un breve delay
+            setTimeout(() => {
+                downloadBtn.style.display = 'block';
+                backBtn.style.display = 'block';
+            }, 1000);
+        }
+
+        // Detectar cuando se cancela la impresión
+        window.addEventListener('afterprint', function() {
+            document.querySelector('.download-btn').style.display = 'block';
+            document.querySelector('.back-btn').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

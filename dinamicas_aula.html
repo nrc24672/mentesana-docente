@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinámicas para el Aula - MenteSana Docente</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #f7fafc;
+        }
+
+        .document-container {
+            max-width: 210mm;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .document-content {
+            padding: 30mm 20mm;
+            min-height: 297mm;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #48bb78;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #48bb78;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .header .subtitle {
+            color: #4a5568;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .program-info {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #2d3748;
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #48bb78;
+            padding-left: 15px;
+        }
+
+        .activity {
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .activity-icon {
+            font-size: 2rem;
+            color: #48bb78;
+        }
+
+        .activity-title {
+            flex: 1;
+        }
+
+        .activity h3 {
+            color: #2d3748;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .activity-meta {
+            display: flex;
+            gap: 20px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .objective {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .objective h4 {
+            color: #234e52;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .materials {
+            background: #fef5e7;
+            border: 1px solid #f6ad55;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .materials h4 {
+            color: #c05621;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .steps {
+            margin: 15px 0;
+        }
+
+        .steps h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step {
+            background: white;
+            border-left: 4px solid #4299e1;
+            border-radius: 0 8px 8px 0;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -12px;
+            top: 12px;
+            background: #4299e1;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .step-content {
+            margin-left: 20px;
+        }
+
+        .variations {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .variations h4 {
+            color: #2f855a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tips {
+            background: #ebf8ff;
+            border: 1px solid #90cdf4;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .tips h4 {
+            color: #2b6cb0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .age-tags {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .age-tag {
+            background: #48bb78;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .category-tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #48bb78;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: #4a5568;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #2d3748;
+            color: white;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            color: #718096;
+            font-size: 12px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        @media print {
+            .download-btn,
+            .back-btn {
+                display: none;
+            }
+            
+            .document-container {
+                box-shadow: none;
+                margin: 0;
+            }
+            
+            .document-content {
+                padding: 20mm;
+            }
+            
+            body {
+                background: white;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .document-container {
+                margin: 10px;
+            }
+            
+            .document-content {
+                padding: 20px 15px;
+            }
+            
+            .activity-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .activity-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .age-tags {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#" onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>
+
+    <button onclick="downloadPDF()" class="download-btn">
+        <i class="fas fa-download"></i> Descargar PDF
+    </button>
+
+    <div class="document-container">
+        <div class="document-content">
+            <div class="header">
+                <h1>DINÁMICAS PARA EL AULA</h1>
+                <p class="subtitle">Actividades Prácticas para Promover el Bienestar Emocional</p>
+            </div>
+
+            <div class="program-info">
+                <strong>MenteSana Docente</strong> - Programa de Capacitación en Salud Mental Educativa
+                <br>Herramientas prácticas para crear aulas emocionalmente seguras
+            </div>
+
+            <div class="section">
+                <h2>Guía de Uso</h2>
+                <p>Esta colección de dinámicas está diseñada para ser implementada gradualmente en tu aula. Cada actividad incluye objetivos claros, materiales necesarios, pasos detallados y variaciones según la edad de tus estudiantes.</p>
+                
+                <div class="tips">
+                    <h4><i class="fas fa-lightbulb"></i> Consejos Generales</h4>
+                    <ul>
+                        <li>Adapta las actividades a tu contexto específico y cultura local</li>
+                        <li>Comienza con dinámicas simples y avanza gradualmente</li>
+                        <li>Crea un ambiente seguro donde todos puedan participar sin juicio</li>
+                        <li>Respeta a quienes no deseen participar inicialmente</li>
+                        <li>Observa las reacciones emocionales durante las actividades</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Dinámicas de Inicio de Clase</h2>
+
+                <div class="activity">
+                    <div class="category-tag">Emociones</div>
+                    <div class="activity-header">
+                        <div class="activity-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <div class="activity-title">
+                            <h3>El Termómetro Emocional</h3>
+                            <div class="age-tags">
+                                <span class="age-tag">11-14 años</span>
+                                <span class="age-tag">15-18 años</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>5-10 minutos</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>Toda la clase</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Diario</span>
+                        </div>
+                    </div>
+
+                    <div class="objective">
+                        <h4><i class="fas fa-target"></i> Objetivo</h4>
+                        <p>Ayudar a los estudiantes a identificar y expresar sus emociones al comenzar la clase, creando un espacio de reconocimiento emocional.</p>
+                    </div>
+
+                    <div class="materials">
+                        <h4><i class="fas fa-box"></i> Materiales</h4>
+                        <ul>
+                            <li>Pizarra o papelógrafo</li>
+                            <li>Marcadores de colores</li>
+                            <li>Caritas emocionales dibujadas (opcional)</li>
+                        </ul>
+                    </div>
+
+                    <div class="steps">
+                        <h4><i class="fas fa-list-ol"></i> Pasos</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                Dibuja un termómetro grande en la pizarra con números del 1 al 10.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                Explica que cada número representa un nivel emocional: 1-3 (triste/preocupado), 4-6 (neutro), 7-10 (feliz/motivado).
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                Cada estudiante dice su nombre y en qué número se encuentra emocionalmente.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                Opcionalmente, pueden compartir brevemente por qué se sienten así.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="variations">
+                        <h4><i class="fas fa-exchange-alt"></i> Variaciones</h4>
+                        <ul>
+                            <li><strong>Para menores:</strong> Usar caritas con emociones en lugar de números</li>
+                            <li><strong>Versión escrita:</strong> Cada estudiante escribe su nivel en un papel anónimo</li>
+                            <li><strong>Con colores:</strong> Asociar cada nivel con un color específico</li>
+                        </ul>
+                    </div>
+
+                    <div class="tips">
+                        <h4><i class="fas fa-lightbulb"></i> Consejos</h4>
+                        <ul>
+                            <li>Comparte tú primero para modelar la actividad</li>
+                            <li>No juzgues ninguna respuesta, todas las emociones son válidas</li>
+                            <li>Presta atención a estudiantes que consistentemente reportan números bajos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="category-tag">Respiración</div>
+                    <div class="activity-header">
+                        <div class="activity-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="activity-title">
+                            <h3>Respiración del Globo</h3>
+                            <div class="age-tags">
+                                <span class="age-tag">11-18 años</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>3-5 minutos</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>Individual</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Cuando sea necesario</span>
+                        </div>
+                    </div>
+
+                    <div class="objective">
+                        <h4><i class="fas fa-target"></i> Objetivo</h4>
+                        <p>Enseñar técnicas de respiración para manejar la ansiedad, el estrés y regular emociones intensas.</p>
+                    </div>
+
+                    <div class="materials">
+                        <h4><i class="fas fa-box"></i> Materiales</h4>
+                        <ul>
+                            <li>Solo las manos (no se necesitan materiales)</li>
+                            <li>Espacio cómodo para sentarse</li>
+                        </ul>
+                    </div>
+
+                    <div class="steps">
+                        <h4><i class="fas fa-list-ol"></i> Pasos</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                Pide a los estudiantes que imaginen que tienen un globo en su barriga.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                Al inhalar lentamente por la nariz (4 segundos), el globo se infla.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                Mantienen el aire por 2 segundos (el globo está lleno).
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                Exhalan lentamente por la boca (6 segundos), el globo se desinfla.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                Repiten el ciclo 5-10 veces.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tips">
+                        <h4><i class="fas fa-lightbulb"></i> Consejos</h4>
+                        <ul>
+                            <li>Practica la técnica cuando estés calmado/a primero</li>
+                            <li>Úsala cuando notes estudiantes ansiosos o estresados</li>
+                            <li>Puedes hacerla con toda la clase antes de exámenes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Dinámicas de Autoestima y Autoconocimiento</h2>
+
+                <div class="activity">
+                    <div class="category-tag">Autoestima</div>
+                    <div class="activity-header">
+                        <div class="activity-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="activity-title">
+                            <h3>El Escudo Personal</h3>
+                            <div class="age-tags">
+                                <span class="age-tag">12-18 años</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>30-45 minutos</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>Individual + grupal</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Una vez por mes</span>
+                        </div>
+                    </div>
+
+                    <div class="objective">
+                        <h4><i class="fas fa-target"></i> Objetivo</h4>
+                        <p>Fortalecer la autoestima identificando fortalezas personales, logros y elementos de protección emocional.</p>
+                    </div>
+
+                    <div class="materials">
+                        <h4><i class="fas fa-box"></i> Materiales</h4>
+                        <ul>
+                            <li>Hojas de papel A4</li>
+                            <li>Colores, marcadores o lápices</li>
+                            <li>Plantilla de escudo (opcional)</li>
+                        </ul>
+                    </div>
+
+                    <div class="steps">
+                        <h4><i class="fas fa-list-ol"></i> Pasos</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                Cada estudiante dibuja un escudo dividido en 4 secciones.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                Sección 1: "Mis fortalezas" - Que dibujen o escriban sus mejores cualidades.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                Sección 2: "Mis logros" - Cosas de las que se sienten orgullosos.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                Sección 3: "Mi red de apoyo" - Personas importantes en su vida.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                Sección 4: "Mis sueños" - Metas y aspiraciones futuras.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <div class="step-content">
+                                Compartir voluntariamente en parejas o grupos pequeños.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="variations">
+                        <h4><i class="fas fa-exchange-alt"></i> Variaciones</h4>
+                        <ul>
+                            <li><strong>Digital:</strong> Crear el escudo usando herramientas digitales simples</li>
+                            <li><strong>Colectivo:</strong> Hacer un escudo grupal con las fortalezas del salón</li>
+                            <li><strong>3D:</strong> Crear escudos físicos con cartón y materiales reciclados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="category-tag">Gratitud</div>
+                    <div class="activity-header">
+                        <div class="activity-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="activity-title">
+                            <h3>El Diario de Gratitud Colectivo</h3>
+                            <div class="age-tags">
+                                <span class="age-tag">11-18 años</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>10-15 minutos</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>Toda la clase</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Viernes</span>
+                        </div>
+                    </div>
+
+                    <div class="objective">
+                        <h4><i class="fas fa-target"></i> Objetivo</h4>
+                        <p>Cultivar una actitud de gratitud y reconocimiento, fortaleciendo las emociones positivas y la cohesión grupal.</p>
+                    </div>
+
+                    <div class="materials">
+                        <h4><i class="fas fa-box"></i> Materiales</h4>
+                        <ul>
+                            <li>Cuaderno grande o papelógrafo</li>
+                            <li>Marcadores de colores</li>
+                            <li>Papelitos adhesivos (post-its)</li>
+                        </ul>
+                    </div>
+
+                    <div class="steps">
+                        <h4><i class="fas fa-list-ol"></i> Pasos</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                Cada viernes, destina 10 minutos para la "ronda de gratitud".
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                Los estudiantes escriben en post-its algo por lo que se sienten agradecidos esa semana.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                Pueden agradecer por situaciones, personas, logros o experiencias.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                Pegan los post-its en el "Árbol de Gratitud" del aula.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                Voluntariamente, algunos pueden compartir su gratitud en voz alta.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tips">
+                        <h4><i class="fas fa-lightbulb"></i> Consejos</h4>
+                        <ul>
+                            <li>Modela la actividad compartiendo tu propia gratitud</li>
+                            <li>Acepta expresiones de gratitud simples y complejas por igual</li>
+                            <li>Mantén el árbol visible durante toda la semana</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Dinámicas de Resolución de Conflictos</h2>
+
+                <div class="activity">
+                    <div class="category-tag">Conflictos</div>
+                    <div class="activity-header">
+                        <div class="activity-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="activity-title">
+                            <h3>El Semáforo Emocional</h3>
+                            <div class="age-tags">
+                                <span class="age-tag">11-16 años</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>20-30 minutos</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>Toda la clase</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Cuando hay conflictos</span>
+                        </div>
+                    </div>
+
+                    <div class="objective">
+                        <h4><i class="fas fa-target"></i> Objetivo</h4>
+                        <p>Enseñar autorregulación emocional y manejo de impulsos a través de la metáfora del semáforo.</p>
+                    </div>
+
+                    <div class="materials">
+                        <h4><i class="fas fa-box"></i> Materiales</h4>
+                        <ul>
+                            <li>Carteles con colores de semáforo</li>
+                            <li>Hojas de trabajo</li>
+                            <li>Lápices o lapiceros</li>
+                        </ul>
+                    </div>
+
+                    <div class="steps">
+                        <h4><i class="fas fa-list-ol"></i> Pasos</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                Explica la metáfora: Rojo = Parar, Amarillo = Pensar, Verde = Actuar.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                ROJO: Cuando sientas emociones intensas, detente y respira profundo.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                AMARILLO: Piensa en las opciones disponibles y sus consecuencias.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                VERDE: Elige la mejor opción y actúa de manera constructiva.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                Practica con situaciones hipotéticas del aula.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="variations">
+                        <h4><i class="fas fa-exchange-alt"></i> Variaciones</h4>
+                        <ul>
+                            <li><strong>Role-playing:</strong> Actuar conflictos comunes y aplicar el semáforo</li>
+                            <li><strong>Señal visual:</strong> Mostrar tarjetas de colores cuando alguien necesite parar</li>
+                            <li><strong>Reflexión grupal:</strong> Analizar conflictos reales usando el semáforo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Dinámicas de Cierre y Reflexión</h2>
+
+                <div class="activity">
+                    <div class="category-tag">Reflexión</div>
+                    <div class="activity-header">
+                        <div class="activity-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="activity-title">
+                            <h3>Tres Palabras del Día</h3>
+                            <div class="age-tags">
+                                <span class="age-tag">11-18 años</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>5-10 minutos</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>Toda la clase</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Final de cada clase</span>
+                        </div>
+                    </div>
+
+                    <div class="objective">
+                        <h4><i class="fas fa-target"></i> Objetivo</h4>
+                        <p>Fomentar la reflexión sobre los aprendizajes y emociones del día, creando un cierre positivo.</p>
+                    </div>
+
+                    <div class="materials">
+                        <h4><i class="fas fa-box"></i> Materiales</h4>
+                        <ul>
+                            <li>Ninguno (actividad oral)</li>
+                        </ul>
+                    </div>
+
+                    <div class="steps">
+                        <h4><i class="fas fa-list-ol"></i> Pasos</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                Antes de terminar la clase, pide que cada estudiante piense en tres palabras.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                Primera palabra: Algo que aprendieron hoy.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                Segunda palabra: Cómo se sienten al final de la clase.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                Tercera palabra: Algo que van a recordar de este día.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                Varios estudiantes comparten voluntariamente sus tres palabras.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tips">
+                        <h4><i class="fas fa-lightbulb"></i> Consejos</h4>
+                        <ul>
+                            <li>Varía quién comparte para incluir a todos eventualmente</li>
+                            <li>Acepta respuestas honestas, incluso si son negativas</li>
+                            <li>Úsalo como termómetro emocional de tu clase</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Adaptaciones para Contexto Rural</h2>
+                <ul>
+                    <li><strong>Incorpora elementos locales:</strong> Usa plantas, animales o paisajes de la zona en las metáforas</li>
+                    <li><strong>Considera el tiempo:</strong> Adapta las actividades a las estaciones agrícolas</li>
+                    <li><strong>Valora la oralidad:</strong> Muchas dinámicas pueden ser completamente verbales</li>
+                    <li><strong>Incluye la familia:</strong> Algunas actividades pueden extenderse al hogar</li>
+                    <li><strong>Usa materiales locales:</strong> Semillas, hojas, piedras pueden reemplazar materiales comerciales</li>
+                    <li><strong>Respeta las tradiciones:</strong> Conecta con prácticas comunitarias existentes</li>
+                </ul>
+            </div>
+
+            <div class="footer">
+                <p><strong>MenteSana Docente</strong> - Dinámicas para el Aula</p>
+                <p>Para más información: mentesana.docente@gmail.com | WhatsApp: +51 984 123 456</p>
+                <p>© 2024 - Recurso educativo gratuito para docentes</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Ocultar botones antes de imprimir
+            const downloadBtn = document.querySelector('.download-btn');
+            const backBtn = document.querySelector('.back-btn');
+            
+            downloadBtn.style.display = 'none';
+            backBtn.style.display = 'none';
+            
+            // Configurar para impresión
+            window.print();
+            
+            // Restaurar botones después de un breve delay
+            setTimeout(() => {
+                downloadBtn.style.display = 'block';
+                backBtn.style.display = 'block';
+            }, 1000);
+        }
+
+        // Detectar cuando se cancela la impresión
+        window.addEventListener('afterprint', function() {
+            document.querySelector('.download-btn').style.display = 'block';
+            document.querySelector('.back-btn').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
